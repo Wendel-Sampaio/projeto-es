@@ -1,4 +1,4 @@
-import org.w3c.dom.ls.LSOutput;
+package Primeiro_Trabalho;
 
 public class HelloNataniel {
 
