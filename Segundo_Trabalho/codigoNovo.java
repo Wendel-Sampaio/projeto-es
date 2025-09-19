@@ -1,7 +1,11 @@
 package Segundo_Trabalho;
 
-import java.util.*;
-class Grupo2_StudentAggregator {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class codigoNovo {
+
     static class Aluno {
         String nome; String id; String curso;
         List<Integer> provas = new ArrayList<>();
@@ -21,7 +25,7 @@ class Grupo2_StudentAggregator {
         return score;
     }
     public static void main(String[] args) {
-        Aluno a = new Aluno("Ana","2023001","Engenharia de Software");
+        codigoAntigo.Aluno a = new codigoAntigo.Aluno("Ana","2023001","Engenharia de Software");
         a.provas.addAll(Arrays.asList(8,7,9));
         a.quizzes.addAll(Arrays.asList(10,8));
         a.tarefas.addAll(Arrays.asList(9,9,10));
