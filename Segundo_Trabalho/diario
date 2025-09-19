@@ -1,0 +1,23 @@
+1. Violação do Princípio de Responsabilidade Única (Single Responsibility Principle - SRP)
+
+No primeiro código: A função mediaFinal recebe muitos parâmetros diretamente (nome, id, curso, provas, quizzes, tarefas) e realiza o cálculo da média de diferentes aspectos (provas, quizzes, tarefas). Além disso, ela também lida com o cálculo da média final e exibe a saída.
+
+Problema: A função tem múltiplas responsabilidades, o que torna o código difícil de manter e testar. Ela deveria apenas calcular a média final, e não lidar com a exibição de resultados.
+
+No segundo código: A função mediaFinalAluno recebe um objeto Aluno como parâmetro e faz o cálculo de forma mais coesa e encapsulada.
+
+Mudança: Agora, a responsabilidade de manter as informações do aluno (nome, id, curso, notas) está na classe Aluno, e a função mediaFinalAluno se concentra apenas no cálculo da média final, o que é uma melhoria em termos de responsabilidade única.
+
+2. Uso de Estruturas de Dados Desnecessárias (Data Clumping)
+
+No primeiro código: A classe Aluno usa três listas separadas (provas, quizzes, tarefas) para armazenar as notas, o que funciona, mas pode ser considerado um design subótimo. Essa abordagem pode tornar o código mais verboso e difícil de gerenciar, especialmente se o número de tipos de notas aumentar no futuro.
+
+No segundo código: A estrutura de dados Aluno permanece a mesma, mas ao passar o objeto Aluno como parâmetro para a função mediaFinalAluno, o código lida de forma mais coesa com as notas, já que todas as informações do aluno estão encapsuladas no mesmo objeto. No entanto, a melhoria real seria se a classe Aluno tivesse uma única lista para armazenar todos os tipos de notas, mas a mudança no design de como os dados são passados já melhora a clareza.
+
+3. Duplicação de Cálculo (Duplication of Code)
+
+No primeiro código: O cálculo da média das provas, quizzes e tarefas é feito dentro da função mediaFinal, e não é reutilizado em nenhum outro lugar. Caso houvesse a necessidade de calcular essa média novamente em outros locais, seria necessário duplicar o mesmo código.
+
+No segundo código: O cálculo da média das provas, quizzes e tarefas foi movido para o método mediaFinalAluno, e agora, como parte da classe Aluno, é mais fácil de reutilizar o método para calcular a média sempre que necessário.
+
+Mudança: A refatoração do código com a função mediaFinalAluno torna a reutilização mais simples e limpa, e também evita duplicação no código.

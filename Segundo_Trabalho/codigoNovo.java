@@ -27,13 +27,17 @@ public class codigoNovo {
 
         return pontuacao;
     }
+
+    public static String mediaFinalFormatada(Aluno aluno){
+        return aluno.nome + " (" + aluno.id + ") - " + aluno.curso + " => " +  String.format("%.2f", mediaFinalAluno(aluno));
+    }
     public static void main(String[] args) {
         Aluno alunoTeste = new Aluno("Ana","2023001","Engenharia de Software");
         alunoTeste.provas.addAll(Arrays.asList(8,7,9));
         alunoTeste.quizzes.addAll(Arrays.asList(10,8));
         alunoTeste.tarefas.addAll(Arrays.asList(9,9,10));
-        mediaFinalAluno(alunoTeste);
-        System.out.println(alunoTeste.nome + " (" + alunoTeste.id + ") - " + alunoTeste.curso + " => " +  String.format("%.2f", mediaFinalAluno(alunoTeste)));
+
+        System.out.println(mediaFinalFormatada(alunoTeste));
 
     }
 }
