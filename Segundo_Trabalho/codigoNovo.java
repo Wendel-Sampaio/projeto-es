@@ -7,28 +7,33 @@ import java.util.List;
 public class codigoNovo {
 
     static class Aluno {
-        String nome; String id; String curso;
+        String nome;
+        String id;
+        String curso;
         List<Integer> provas = new ArrayList<>();
         List<Integer> quizzes = new ArrayList<>();
         List<Integer> tarefas = new ArrayList<>();
-        Aluno(String n,String i,String c){nome=n; id=i; curso=c;}
+        Aluno(String nome,String id,String curso)
+        {this.nome=nome;
+            this.id=id; this.curso=curso;}
     }
-    public static double mediaFinal(String nome, String id, String curso,
-                                    List<Integer> provas, List<Integer> quizzes, List<Integer>
-                                            tarefas) {
-        double mp = provas.stream().mapToInt(x->x).average().orElse(0);
-        double mq = quizzes.stream().mapToInt(x->x).average().orElse(0);
-        double mt = tarefas.stream().mapToInt(x->x).average().orElse(0);
-        double score = mp * 0.6 + mq * 0.2 + mt * 0.2;
-        if (curso != null && curso.toLowerCase().contains("eng")) score += 0.5;
-        System.out.println(nome + " (" + id + ") - " + curso + " => " + score);
-        return score;
+    public static double mediaFinalAluno(Aluno aluno) {
+        double mediaProvas = aluno.provas.stream().mapToInt(x->x).average().orElse(0);
+        double mediaQuizzes = aluno.quizzes.stream().mapToInt(x->x).average().orElse(0);
+        double mediaTarefas = aluno.tarefas.stream().mapToInt(x->x).average().orElse(0);
+
+        double pontuacao= mediaProvas * 0.6 + mediaQuizzes * 0.2 + mediaTarefas * 0.2;
+        if (aluno.curso != null && aluno.curso.toLowerCase().contains("eng")) pontuacao += 0.5;
+
+        return pontuacao;
     }
     public static void main(String[] args) {
-        codigoAntigo.Aluno a = new codigoAntigo.Aluno("Ana","2023001","Engenharia de Software");
-        a.provas.addAll(Arrays.asList(8,7,9));
-        a.quizzes.addAll(Arrays.asList(10,8));
-        a.tarefas.addAll(Arrays.asList(9,9,10));
-        mediaFinal(a.nome, a.id, a.curso, a.provas, a.quizzes, a.tarefas);
+        Aluno alunoTeste = new Aluno("Ana","2023001","Engenharia de Software");
+        alunoTeste.provas.addAll(Arrays.asList(8,7,9));
+        alunoTeste.quizzes.addAll(Arrays.asList(10,8));
+        alunoTeste.tarefas.addAll(Arrays.asList(9,9,10));
+        mediaFinalAluno(alunoTeste);
+        System.out.println(alunoTeste.nome + " (" + alunoTeste.id + ") - " + alunoTeste.curso + " => " +  String.format("%.2f", mediaFinalAluno(alunoTeste)));
+
     }
 }
